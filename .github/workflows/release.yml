@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    name: Prepare release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      # Build
+      - name: Build the file
+        run: |
+          cd $GITHUB_WORKSPACE
+          yarn
+          yarn build
+
+      # Upload build file to the releas as an asset.
+      - name: Upload zip to release
+        uses: svenstaro/upload-release-action@v1-release
+
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: /home/runner/work/linked-lovelace-ui/linked-lovelace-ui/dist/linked-lovelace-ui.js
+          asset_name: linked-lovelace-ui.js
+          tag: ${{ github.ref }}
+          overwrite: true
+  validate:
+    runs-on: "ubuntu-latest"
+    steps:
+        - uses: "actions/checkout@v2"
+        - name: HACS Action
+          uses: "hacs/action@main"
+          with:
+            category: "plugin"

@@ -1,0 +1,39 @@
+{
+  "common": {
+    "version": "Version",
+    "scroll_controls": "Scroll Controls",
+    "scroll_directions": {
+      "prefix": "Scroll to ",
+      "suffix": "",
+      "directions": {
+        "left": "Left",
+        "right": "Right",
+        "top": "Top",
+        "bottom": "Bottom"
+      }
+    },
+    "template_mode": {
+      "enable": "Enable Template Mode",
+      "disable": "Disable Template Mode"
+    },
+    "view": "View",
+    "dashboard": "Dashboard",
+    "template": "Template",
+    "templates": "Templates",
+    "and": "and",
+    "in_use": "In Use",
+    "update": "Update",
+    "update_all": "Update All",
+    "condense": "Condense",
+    "expand": "Expand",
+    "reload_ui": "Update",
+    "reload": "Refresh",
+    "headers": {
+      "templates": "Templates & The Views They Are Used On",
+      "dashboards": "Dashboards"
+    },
+    "invalid_configuration": "Invalid configuration",
+    "show_warning": "Show Warning",
+    "show_error": "Show Error"
+  }
+}
