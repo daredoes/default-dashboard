@@ -35,6 +35,7 @@ class DefaultDashboardController {
   };
 
   setDefaultPanel = async (defaultPanel: string) => {
+    (this.hass as any).defaultPanel = defaultPanel;
     localStorage.setItem(LOCAL_STORAGE_OPTIONS.defaultPanel, defaultPanel);
     localStorage.setItem(LOCAL_STORAGE_OPTIONS.isDefaultPanelManaged, 'true');
   };
