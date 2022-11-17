@@ -42,6 +42,7 @@ Hey you! Help me out for a couple of :beers: or a :coffee:!
 ## Troubleshooting
 
 * You can retain a per-device default dashboard by loading the home page first (this loads the module), then going to the dashboards tab, and setting the desired default dashboard on the device. It should stay on the dashboard you want after that.
+  ![Retain Device Default](/docs/imgs/RetainDeviceDefault.gif)
 
 ---
 
