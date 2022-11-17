@@ -23,6 +23,7 @@ Hey you! Help me out for a couple of :beers: or a :coffee:!
 
 * Select a dashboard that will become the default for all users/devices
 * Update selected dashboard at any time
+* Retain a custom default dashboard by loading the home page first (this loads the module), then going to the dashboards tab, and setting the default dashboard.
 
 ---
 

@@ -1,6 +1,5 @@
 const LOCAL_STORAGE_OPTIONS = {
   defaultPanel: '',
-  defaultManagedPanel: '',
   isDefaultPanelManaged: '',
 };
 

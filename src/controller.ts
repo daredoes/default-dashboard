@@ -1,31 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { HomeAssistant } from 'custom-card-helpers';
-import { log } from './helpers';
+import LOCAL_STORAGE_OPTIONS from './helpers/storageOptions';
 import { Dashboard } from './types';
-
-export const LOCAL_STORAGE_OPTIONS = {
-  defaultPanel: '',
-  defaultManagedPanel: '',
-  isDefaultPanelManaged: '',
-};
-
-// Set all values to the key
-Object.keys(LOCAL_STORAGE_OPTIONS).forEach((key) => {
-  LOCAL_STORAGE_OPTIONS[key] = key;
-});
-
-export const fireEvent = (defaultPanel: string) => {
-  const detail = { defaultPanel };
-  const event = new Event('hass-default-panel', {
-    bubbles: true,
-    cancelable: false,
-    composed: true,
-  });
-  (event as any).detail = detail;
-  // window.dispatchEvent(event);
-  return event;
-};
-
 class DefaultDashboardController {
   hass!: HomeAssistant;
   constructor(hass: HomeAssistant) {
@@ -38,28 +14,22 @@ class DefaultDashboardController {
     });
   };
 
-  getStorageSettings = async () => {
+  getStorageSettings = async (): Promise<{ defaultPanel: string | null; isDefaultPanelManaged: string | null }> => {
     const defaultPanel: string | null = localStorage.getItem(LOCAL_STORAGE_OPTIONS.defaultPanel);
-    const defaultManagedPanel: string | null = localStorage.getItem(LOCAL_STORAGE_OPTIONS.defaultManagedPanel);
     const isDefaultPanelManaged: string | null = localStorage.getItem(LOCAL_STORAGE_OPTIONS.isDefaultPanelManaged);
-    return { defaultPanel, isDefaultPanelManaged, defaultManagedPanel };
+    return { defaultPanel, isDefaultPanelManaged };
   };
 
-  setDefaultPanel = async (defaultPanel: string) => {
+  setDefaultPanel = async (defaultPanel: string): Promise<void> => {
     localStorage.setItem(LOCAL_STORAGE_OPTIONS.defaultPanel, defaultPanel);
     localStorage.setItem(LOCAL_STORAGE_OPTIONS.isDefaultPanelManaged, 'true');
   };
 
-  setManagedDefaultPanel = async (defaultManagedPanel: string) => {
-    localStorage.setItem(LOCAL_STORAGE_OPTIONS.defaultManagedPanel, defaultManagedPanel);
-    localStorage.setItem(LOCAL_STORAGE_OPTIONS.isDefaultPanelManaged, 'true');
-  };
-
-  disable = async () => {
+  disable = async (): Promise<void> => {
     localStorage.setItem(LOCAL_STORAGE_OPTIONS.isDefaultPanelManaged, 'false');
   };
 
-  enable = async () => {
+  enable = async (): Promise<void> => {
     localStorage.setItem(LOCAL_STORAGE_OPTIONS.isDefaultPanelManaged, 'true');
   };
 }
