@@ -33,8 +33,14 @@ let controller: Controller;
         },
         { entity_id: 'input_select.default_dashboard' },
       );
-      log('Reloading the page for new options');
-      location.replace('/');
+      hass.callService(
+        'input_select',
+        'select_option',
+        {
+          option: 'enabled',
+        },
+        { entity_id: 'input_select.default_dashboard' },
+      );
       return;
     } else if (my_lovelace_url === 'disabled') {
       await controller.disable();
