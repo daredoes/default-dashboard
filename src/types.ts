@@ -6,3 +6,9 @@ export interface Dashboard {
   title: string;
   url_path: string;
 }
+
+export interface HassDefaultEvent extends Event {
+  detail: {
+    defaultPanel: string;
+  };
+}
