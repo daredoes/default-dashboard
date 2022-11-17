@@ -1,6 +1,6 @@
 {
   "name": "default-dashboard",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Sets the default dashboard for lovelace automatically",
   "keywords": [
     "home-assistant",

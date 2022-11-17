@@ -19,9 +19,9 @@ Hey you! Help me out for a couple of :beers: or a :coffee:!
 
 ---
 
-##  Features
+## Features
 
-* Select a dashboard that will become the default for all web users/devices (does not include mobile apps at this time)
+* Select a dashboard that will become the default for all users/devices
 * Update selected dashboard at any time
 
 ---
@@ -30,13 +30,12 @@ Hey you! Help me out for a couple of :beers: or a :coffee:!
 
 1. Add through  [HACS](https://github.com/custom-components/hacs)
 2. Create a dropdown helper called `Default Dashboard`. The entity id must be `input_select.default_dashboard`. Give it the option of "refresh", and select this option.
-3. Reload the homepage. This will update the `Default Dashboard` helper to have all possible dashboards an options, with the option "enabled" selected.
-4. Choose an option for the `Default Dashboard` helper.
-5. Reload the home URL on mobile, and watch it set the default dashboard away from Overview
-
+3. Create a toggle helper called `Default Dashboard`. The entity id must be `input_boolean.default_dashboard`. Save it, and leave it disabled.
+4. Reload the homepage. This will update the `Default Dashboard` helper to have all possible dashboards an options, with the option "lovelace" selected.
+5. Choose an option for the `Default Dashboard` dropdown helper, and enable the toggle helper.
+6. Reload the home URL, and watch it set the default dashboard away from Overview
 
 ---
-
 
 [commits-shield]: https://img.shields.io/github/commit-activity/y/daredoes/default-dashboard.svg
 [commits]: https://github.com/daredoes/default-dashboard/commits/master

@@ -16,7 +16,16 @@ let controller: Controller;
 
   const hass = getHass();
   controller = new Controller(hass);
+
+  window.addEventListener('hass-default-panel', (ev: any) => {
+    if (ev.detail.defaultPanel === 'lovelace') {
+      controller.enable();
+    } else {
+      controller.disable();
+    }
+  });
   const my_lovelace_url = hass.states['input_select.default_dashboard']?.state;
+  const default_dashboard_enabled = hass.states['input_boolean.default_dashboard']?.state === 'on';
   if (my_lovelace_url) {
     const dashboards = await controller.getDashboards();
     const urls = {};
@@ -29,7 +38,7 @@ let controller: Controller;
         'input_select',
         'set_options',
         {
-          options: ['lovelace', ...Object.keys(urls), 'enabled', 'disabled', 'refresh'],
+          options: ['lovelace', ...Object.keys(urls), 'refresh'],
         },
         { entity_id: 'input_select.default_dashboard' },
       );
@@ -37,16 +46,16 @@ let controller: Controller;
         'input_select',
         'select_option',
         {
-          option: 'enabled',
+          option: 'lovelace',
         },
         { entity_id: 'input_select.default_dashboard' },
       );
       return;
-    } else if (my_lovelace_url === 'disabled') {
-      await controller.disable();
-      return;
-    } else if (my_lovelace_url === 'enabled') {
-      await controller.enable();
+    }
+    if (default_dashboard_enabled) {
+      if ((await (await controller.getStorageSettings()).isDefaultPanelManaged) === null) {
+        await controller.enable();
+      }
     }
     const managedPanel = `"${my_lovelace_url as string}"`;
     const settings = await controller.getStorageSettings();

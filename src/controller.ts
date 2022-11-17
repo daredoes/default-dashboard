@@ -46,14 +46,6 @@ class DefaultDashboardController {
   };
 
   setDefaultPanel = async (defaultPanel: string) => {
-    // this.hass['defaultPanel'] = defaultPanel;
-    window.dispatchEvent(
-      new StorageEvent('storage', {
-        key: 'defaultPanel',
-        newValue: defaultPanel,
-      }),
-    );
-    // console.log(this.hass['defaultPanel']);
     localStorage.setItem(LOCAL_STORAGE_OPTIONS.defaultPanel, defaultPanel);
     localStorage.setItem(LOCAL_STORAGE_OPTIONS.isDefaultPanelManaged, 'true');
   };
