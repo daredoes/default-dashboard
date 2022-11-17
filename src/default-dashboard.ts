@@ -41,8 +41,6 @@ let controller: Controller;
         },
         { entity_id: 'input_select.default_dashboard' },
       );
-      log('Reloading the page for new options');
-      location.replace('/');
       return;
     } else if (my_lovelace_url === 'disabled') {
       await controller.disable();
