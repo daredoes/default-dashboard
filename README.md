@@ -34,8 +34,14 @@ Hey you! Help me out for a couple of :beers: or a :coffee:!
 3. Create a toggle helper called `Default Dashboard`. The entity id must be `input_boolean.default_dashboard`. Save it, and leave it disabled.
   ![Add Toggle Helper](/docs/imgs/AddToggleHelper.gif)
 4. Reload the homepage. This will update the `Default Dashboard` helper to have all possible dashboards an options, with the option "lovelace" selected.
+  ![Refresh Dropdown Helper](/docs/imgs/Refresh.gif)
 5. Choose an option for the `Default Dashboard` dropdown helper, and enable the toggle helper.
 6. Reload the home URL, and watch it set the default dashboard away from Overview
+  ![Set and Use](/docs/imgs/SetUse.gif)
+
+## Troubleshooting
+
+* You can retain a per-device default dashboard by loading the home page first (this loads the module), then going to the dashboards tab, and setting the desired default dashboard on the device. It should stay on the dashboard you want after that.
 
 ---
 
