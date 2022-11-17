@@ -14,6 +14,18 @@ Object.keys(LOCAL_STORAGE_OPTIONS).forEach((key) => {
   LOCAL_STORAGE_OPTIONS[key] = key;
 });
 
+export const fireEvent = (defaultPanel: string) => {
+  const detail = { defaultPanel };
+  const event = new Event('hass-default-panel', {
+    bubbles: true,
+    cancelable: false,
+    composed: true,
+  });
+  (event as any).detail = detail;
+  // window.dispatchEvent(event);
+  return event;
+};
+
 class DefaultDashboardController {
   hass!: HomeAssistant;
   constructor(hass: HomeAssistant) {
@@ -35,7 +47,14 @@ class DefaultDashboardController {
   };
 
   setDefaultPanel = async (defaultPanel: string) => {
-    (this.hass as any).defaultPanel = defaultPanel;
+    // this.hass['defaultPanel'] = defaultPanel;
+    window.dispatchEvent(
+      new StorageEvent('storage', {
+        key: 'defaultPanel',
+        newValue: defaultPanel,
+      }),
+    );
+    // console.log(this.hass['defaultPanel']);
     localStorage.setItem(LOCAL_STORAGE_OPTIONS.defaultPanel, defaultPanel);
     localStorage.setItem(LOCAL_STORAGE_OPTIONS.isDefaultPanelManaged, 'true');
   };
