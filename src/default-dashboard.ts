@@ -50,7 +50,6 @@ let controller: Controller;
     }
     const managedPanel = `"${my_lovelace_url as string}"`;
     const settings = await controller.getStorageSettings();
-    console.log(settings);
     const disabled = settings.isDefaultPanelManaged === 'false';
     if (!disabled) {
       if (settings.defaultManagedPanel !== managedPanel) {

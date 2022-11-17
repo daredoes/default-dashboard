@@ -33,7 +33,6 @@ class DefaultDashboardController {
   }
 
   getDashboards = async (): Promise<Dashboard[]> => {
-    log('Getting User-Created Dashboards');
     return this.hass.callWS<Dashboard[]>({
       type: 'lovelace/dashboards/list',
     });
@@ -69,7 +68,7 @@ class DefaultDashboardController {
   };
 
   enable = async () => {
-    localStorage.setItem(LOCAL_STORAGE_OPTIONS.isDefaultPanelManaged, 'false');
+    localStorage.setItem(LOCAL_STORAGE_OPTIONS.isDefaultPanelManaged, 'true');
   };
 }
 
