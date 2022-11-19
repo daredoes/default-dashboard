@@ -74,16 +74,18 @@ const enableIfNull = async () => {
 // Gets the helper entities needed for Default Dashboard, and throws log messages if they are missing
 const getUrlAndToggle = (hass: HomeAssistant) => {
   const url = hass.states[DEFAULT_DASHBOARD_DROPDOWN]?.state;
-  const enabled = hass.states[DEFAULT_DASHBOARD_TOGGLE]?.state === 'on';
-  if (url === null || enabled === null) {
-    if (url === null) {
-      log(`Please create a Dropdown helper with the id \`${DEFAULT_DASHBOARD_DROPDOWN}\``);
+  const enabled = hass.states[DEFAULT_DASHBOARD_TOGGLE]?.state;
+  if (url === undefined || enabled === undefined) {
+    if (url === undefined) {
+      controller.createInputSelect();
+      log(`Created a Dropdown helper with the id \`${DEFAULT_DASHBOARD_DROPDOWN}\``);
     }
-    if (enabled === null) {
-      log(`Please create a Toggle helper with the id \`${DEFAULT_DASHBOARD_TOGGLE}\``);
+    if (enabled === undefined) {
+      controller.createInputBoolean();
+      log(`Created a Toggle helper with the id \`${DEFAULT_DASHBOARD_TOGGLE}\``);
     }
   }
-  return { url, enabled };
+  return { url, enabled: enabled === 'on' };
 };
 
 // Try to enable Default Dashboard, if that is current setting

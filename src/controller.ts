@@ -14,6 +14,34 @@ class DefaultDashboardController {
     });
   };
 
+  createInputBoolean = async (): Promise<any> => {
+    const res = await this.hass.callWS({
+      type: 'input_boolean/create',
+      name: 'Default Dashboard',
+      initial: true,
+    });
+    console.log(res);
+    return res;
+  };
+
+  createInputSelect = async (): Promise<any> => {
+    const dashboards = await this.getDashboards().then((boards) => {
+      return boards
+        .filter((d) => !d.require_admin)
+        .flatMap((d) => {
+          return d.url_path;
+        });
+    });
+    const res = await this.hass.callWS({
+      type: 'input_select/create',
+      name: 'Default Dashboard',
+      options: ['lovelace', ...dashboards, 'refresh'],
+      initial: 'lovelace',
+    });
+    console.log(res);
+    return res;
+  };
+
   getStorageSettings = async (): Promise<{ defaultPanel: string | null; isDefaultPanelManaged: string | null }> => {
     const defaultPanel: string | null = localStorage.getItem(LOCAL_STORAGE_OPTIONS.defaultPanel);
     const isDefaultPanelManaged: string | null = localStorage.getItem(LOCAL_STORAGE_OPTIONS.isDefaultPanelManaged);
