@@ -19,7 +19,6 @@ class DefaultDashboardController {
       type: 'input_boolean/create',
       name: 'Default Dashboard',
     });
-    console.log(res);
     return res;
   };
 
@@ -36,7 +35,6 @@ class DefaultDashboardController {
       name: 'Default Dashboard',
       options: ['lovelace', ...dashboards, 'refresh'],
     });
-    console.log(res);
     return res;
   };
 
