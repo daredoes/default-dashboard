@@ -18,9 +18,7 @@ class DefaultDashboardController {
     const res = await this.hass.callWS({
       type: 'input_boolean/create',
       name: 'Default Dashboard',
-      initial: true,
     });
-    console.log(res);
     return res;
   };
 
@@ -36,9 +34,7 @@ class DefaultDashboardController {
       type: 'input_select/create',
       name: 'Default Dashboard',
       options: ['lovelace', ...dashboards, 'refresh'],
-      initial: 'lovelace',
     });
-    console.log(res);
     return res;
   };
 
