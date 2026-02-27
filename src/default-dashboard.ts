@@ -139,7 +139,7 @@ const setDefaultDashboard = async (url: string) => {
     if (my_lovelace_url === 'refresh') {
       log('Setting dropdown options');
       const urls = await getUrlsHash();
-      await setDefaultDashboardOptions(hass, [OVERVIEW_OPTION, ...Object.keys(urls), REFRESH_OPTION]);
+      await setDefaultDashboardOptions(hass, [...Object.keys(urls), REFRESH_OPTION]);
       await setDefaultDashboardOption(hass, OVERVIEW_OPTION);
       return;
     } else {
