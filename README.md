@@ -1,5 +1,7 @@
 # Default Dashboard by [@daredoes](https://www.github.com/daredoes)
 
+## Want to take over this repo? Just submit PRs and I'll review and probably approve. This plugin is now included as part of HomeAssistant! (did they steal my work? I hope so!)
+
 Enforce a default dashboard on every device in Home Assistant!
 
 [![GitHub Release][releases-shield]][releases]
